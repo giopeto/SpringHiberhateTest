@@ -1,0 +1,41 @@
+<div ng-controller="usersAddEditCtrl as usersAddEditCtrl">
+
+	<form class="form-inline">
+		<input class="form-control" type="text" placeholder="firstName" ng-model = "usersAddEditCtrl.user.firstName" name="firstName">
+		<input class="form-control" type="text" placeholder="lastName" ng-model = "usersAddEditCtrl.user.lastName" name="lastName">
+		<input class="form-control" type="text" placeholder="email" ng-model = "usersAddEditCtrl.user.email" name="email">
+		<input class="form-control" type="text" placeholder="userName" ng-model = "usersAddEditCtrl.user.userName" name="userName">
+		<input class="form-control" type="text" placeholder="password" ng-model = "usersAddEditCtrl.user.password" name="password">
+
+		<button ng-click="usersAddEditCtrl.set()" class="btn btn-success btn-lg">Save</button>
+
+
+	</form>
+	<br/>
+
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Email</th>
+			<th>Username</th>
+			<th>Password</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="row in usersAddEditCtrl.allUsers">
+			<td>{{row.id}}</td>
+			<td>{{row.firstName}}</td>
+			<td>{{row.lastName}}</td>
+			<td>{{row.email}}</td>
+			<td>{{row.userName}}</td>
+			<td>{{row.password}}</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+	<!--<pre>{{ usersAddEditCtrl | json}}</pre>-->
+</div>
