@@ -1,9 +1,12 @@
 package com.items.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.groups.domain.Group;
 import com.measures.domain.Measure;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="items")
@@ -15,16 +18,17 @@ public class Item {
     private String name;
 
     //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @ManyToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="group_id")
     private Group group;
-    @ManyToOne
-    @JoinColumn(name="measure_id")
-    private Measure measures;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "items2measures", joinColumns = { @JoinColumn(name = "item_id") }, inverseJoinColumns = { @JoinColumn(name = "measure_id") })
+    private Set<Measure> measures = new HashSet<Measure>(0);
 
     public Item() {}
 
-    public Item(Long id, String name, Group group, Measure measures) {
+    public Item(Long id, String name, Group group, Set<Measure> measures) {
         this.id = id;
         this.name = name;
         this.group = group;
@@ -55,11 +59,11 @@ public class Item {
         this.group = group;
     }
 
-    public Measure getMeasures() {
+    public Set<Measure> getMeasures() {
         return measures;
     }
 
-    public void setMeasures(Measure measures) {
+    public void setMeasures(Set<Measure> measures) {
         this.measures = measures;
     }
 }

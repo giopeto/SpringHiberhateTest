@@ -9,7 +9,7 @@
             <option ng-repeat="row in vm.allGroups" value="{{row}}">{{row.name}}</option>
         </select>
 
-        <select class="form-control" ng-model="vm.items.measures">
+        <select class="form-control" ng-model="vm.items.thisMeasure" ng-change="vm.addMeasure(vm.items.thisMeasure)">
             <option ng-repeat="row in vm.allMeasures" value="{{row}}">{{row.name}}</option>
         </select>
 

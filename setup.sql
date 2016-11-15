@@ -26,8 +26,18 @@ CREATE TABLE items (
   CONSTRAINT items2measures FOREIGN KEY (measure_id) REFERENCES measures (id) ON DELETE CASCADE
 );
 
-
+DROP TABLE IF EXISTS measures;
 CREATE TABLE measures(
   id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL
 );
+
+
+DROP TABLE IF EXISTS items2measures;
+CREATE TABLE items2measures(
+  item_id int(10) unsigned DEFAULT NULL,
+  measure_id int(10) unsigned DEFAULT NULL,
+  CONSTRAINT items2measures2items FOREIGN KEY (item_id) REFERENCES items (id) ON DELETE CASCADE,
+  CONSTRAINT items2measures2measures FOREIGN KEY (measure_id) REFERENCES measures (id) ON DELETE CASCADE
+);
+

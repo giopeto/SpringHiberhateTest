@@ -7,11 +7,12 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
     var vm = this;
     vm.items = new ItemFactory();
     vm.isLoading = false;
+    vm.items.measures = [];
     /*vm.items = {
      name: '',
      };*/
     vm.allItems = [];
-
+    vm.measures = [];
     vm.allGroups = GroupFactory.query({}, function() {
 
     }, function (error) {
@@ -26,14 +27,13 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
         vm.isLoading = true;
         $log.log(vm.items);
         vm.items.group = JSON.parse(vm.items.group);
-        vm.items.measures = JSON.parse(vm.items.measures);
 
         var start = performance.now();
-        for(var i = 0; i <10000; i++) {
+        //for(var i = 0; i <10000; i++) {
             ItemFactory.save(vm.items, function (data) {
                /* $log.log("Success: ", data);*/
-                //vm.allItems.push(data);
-                //vm.isLoading = false;
+                vm.allItems.push(data);
+                vm.isLoading = false;
 
                 var end = performance.now(),
                 min = (end/1000/60) << 0,
@@ -43,7 +43,7 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
                 $log.log("Error: ", error);
                 vm.isLoading = false;
             });
-       }
+       //}
 
 
     };
@@ -82,6 +82,11 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
         });
     };
 
+    vm.addMeasure = function (args) {
+        $log.log (args);
+        //vm.items.measures = JSON.parse(vm.items.measures);
+        vm.items.measures.push(JSON.parse(args));
+    };
 
     vm.get();
 
