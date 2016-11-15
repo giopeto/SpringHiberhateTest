@@ -28,7 +28,7 @@ public class ItemServiceImpl implements ItemService{
     public List<Item> get() {
         Session session = this.sessionFactory.getCurrentSession();
         List<Item> itemList = session.createQuery("from Item").list();
-        System.out.println("Items => " + itemList.toString());
+        System.out.println("Items => " + itemList.toString() + "\n\n\n\n\n\n\n\n\n\n\n\n\n");
         return itemList;
     }
 
