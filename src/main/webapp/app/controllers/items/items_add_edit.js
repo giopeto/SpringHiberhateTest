@@ -28,16 +28,22 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
         vm.items.group = JSON.parse(vm.items.group);
         vm.items.measures = JSON.parse(vm.items.measures);
 
-        //for(var i = 0; i <=10000; i++) {
+        var start = performance.now();
+        for(var i = 0; i <10000; i++) {
             ItemFactory.save(vm.items, function (data) {
                /* $log.log("Success: ", data);*/
-                vm.allItems.push(data);
-                vm.isLoading = false;
+                //vm.allItems.push(data);
+                //vm.isLoading = false;
+
+                var end = performance.now(),
+                min = (end/1000/60) << 0,
+                sec = (end/1000) % 60;
+                console.log('Insert ' + i + ' records took ' + min + ' min and ' + sec + "sec.");
             }, function (error) {
                 $log.log("Error: ", error);
                 vm.isLoading = false;
             });
-       // }
+       }
 
 
     };
