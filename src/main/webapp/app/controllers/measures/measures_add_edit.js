@@ -1,50 +1,35 @@
 'use strict';
 
-/* Items Add Edit Controller */
+/* Measures Add Edit Controller */
 
-ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, GroupFactory, MeasureFactory) {
+ngApp.lazy.controller('measuresAddEditCtrl', function($scope, $log, MeasureFactory) {
 
     var vm = this;
-    vm.items = new ItemFactory();
+    vm.measures = new MeasureFactory();
     vm.isLoading = false;
-    /*vm.items = {
-     name: '',
-     };*/
-    vm.allItems = [];
-
-    vm.allGroups = GroupFactory.query({}, function() {
-
-    }, function (error) {
-        $log.log ("Error: ", error);
-    });
-    vm.allMeasures = MeasureFactory.query({}, function() {
-    }, function (error) {
-        $log.log ("Error: ", error);
-    });
+    vm.allMeasures = [];
 
     vm.set = function (args) {
         vm.isLoading = true;
         $log.log(vm.items);
-        vm.items.group = JSON.parse(vm.items.group);
-        vm.items.measures = JSON.parse(vm.items.measures);
 
-        //for(var i = 0; i <=10000; i++) {
-            ItemFactory.save(vm.items, function (data) {
-               /* $log.log("Success: ", data);*/
-                vm.allItems.push(data);
+
+            MeasureFactory.save(vm.measure, function (data) {
+                $log.log("Success: ", data);
+                vm.allMeasures.push(data);
                 vm.isLoading = false;
             }, function (error) {
                 $log.log("Error: ", error);
                 vm.isLoading = false;
             });
-       // }
+
 
 
     };
 
     vm.get = function () {
         vm.isLoading = true;
-        vm.allItems = ItemFactory.query({}, function() {
+        vm.allMeasures = MeasureFactory.query({}, function() {
             vm.isLoading = false;
         }, function (error) {
             $log.log ("Error: ", error);
@@ -54,7 +39,7 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
 
     vm.update = function (args) {
         vm.isLoading = true;
-        ItemFactory.update(args, function (data) {
+        MeasureFactory.update(args, function (data) {
             $log.log("Success: ", data)
             vm.isLoading = false;
             args.edit = 0;
@@ -66,7 +51,7 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
 
     vm.delete = function (args) {
         vm.isLoading = true;
-        ItemFactory.delete(args, function (data) {
+        MeasureFactory.delete(args, function (data) {
             $log.log("Success: ", data);
             vm.get();
             vm.isLoading = false;

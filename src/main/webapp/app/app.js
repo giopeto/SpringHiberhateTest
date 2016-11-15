@@ -60,6 +60,26 @@ ngApp.config(function ($controllerProvider, $compileProvider, $filterProvider, $
 					'app/controllers/items/items_add_edit.js',
 					'app/services/items/item_factory.js',
 					'app/services/group/group_factory.js',
+					'app/services/measures/measure_factory.js'
+				], function () {
+					$rootScope.$apply(function () {
+						deferred.resolve();
+					}, function () {
+						console.log ('ERROR');
+					});
+				});
+				return deferred.promise;
+			}]
+		}
+	}).when('/measures_add_edit', {
+		templateUrl: 'app/templates/measures/measures_add_edit.html',
+		resolve: {
+			load: ['$q', '$rootScope', function ($q, $rootScope) {
+				var deferred = $q.defer();
+				require([
+
+					'app/controllers/measures/measures_add_edit.js',
+					'app/services/measures/measure_factory.js'
 				], function () {
 					$rootScope.$apply(function () {
 						deferred.resolve();

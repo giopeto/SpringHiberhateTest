@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/dataSources.local.xml
+.idea/workspace.xml
+src/test/
+target/
+.idea
+target
+src/main/resources/rebel.xml

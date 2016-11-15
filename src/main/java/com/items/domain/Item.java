@@ -1,6 +1,7 @@
 package com.items.domain;
 
 import com.groups.domain.Group;
+import com.measures.domain.Measure;
 
 import javax.persistence.*;
 
@@ -17,13 +18,17 @@ public class Item {
     @ManyToOne
     @JoinColumn(name="group_id")
     private Group group;
+    @ManyToOne
+    @JoinColumn(name="measure_id")
+    private Measure measures;
 
     public Item() {}
 
-    public Item(Long id, String name, Group group) {
+    public Item(Long id, String name, Group group, Measure measures) {
         this.id = id;
         this.name = name;
         this.group = group;
+        this.measures = measures;
     }
 
     public Long getId() {
@@ -50,4 +55,11 @@ public class Item {
         this.group = group;
     }
 
+    public Measure getMeasures() {
+        return measures;
+    }
+
+    public void setMeasures(Measure measures) {
+        this.measures = measures;
+    }
 }

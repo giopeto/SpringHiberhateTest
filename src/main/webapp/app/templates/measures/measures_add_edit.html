@@ -1,18 +1,9 @@
-<div ng-controller="itemsAddEditCtrl as vm">
+<div ng-controller="measuresAddEditCtrl as vm">
 
     <pre>{{vm.items | json}}</pre>
 
     <form class="form-inline">
-        <input class="form-control" type="text" placeholder="Name" ng-model = "vm.items.name" name="name">
-
-        <select placeholder="Name" class="form-control" id="sel1" name="sel1" ng-model="vm.items.group">
-            <option ng-repeat="row in vm.allGroups" value="{{row}}">{{row.name}}</option>
-        </select>
-
-        <select class="form-control" ng-model="vm.items.measures">
-            <option ng-repeat="row in vm.allMeasures" value="{{row}}">{{row.name}}</option>
-        </select>
-
+        <input class="form-control" type="text" placeholder="Name" ng-model = "vm.measure.name" name="name">
         <button ng-click="vm.set({})" class="btn btn-success btn-lg">Save</button>
 
     </form>
@@ -28,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="row in vm.allItems">
+        <tr ng-repeat="row in vm.allMeasures">
             <td>{{row.id}}</td>
             <td ng-if="!row.edit">{{row.name}}</td>
             <td ng-if="row.edit"><input class="form-control" type="text" placeholder="Name" ng-model = "row.name" name="name"></td>
@@ -40,5 +31,5 @@
     </table>
 
 
-    <pre>{{ vm.items | json}}</pre>
+    <!--<pre>{{ usersAddEditCtrl | json}}</pre>-->
 </div>
