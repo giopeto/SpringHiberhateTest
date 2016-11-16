@@ -1,7 +1,5 @@
 <div ng-controller="itemsAddEditCtrl as vm">
 
-    <pre>{{vm.items | json}}</pre>
-
     <form class="form-inline">
         <input class="form-control" type="text" placeholder="Name" ng-model = "vm.items.name" name="name">
 
@@ -16,6 +14,7 @@
         <button ng-click="vm.set({})" class="btn btn-success btn-lg">Save</button>
 
     </form>
+    <pre>{{vm.items | json}}</pre>
     <img src="app/img/712.GIF" alt="preloader" class="img-responsive center-block"  ng-if="vm.isLoading"/>
     <br/>
     <table class="table table-striped">

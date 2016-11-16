@@ -22,7 +22,7 @@ public class Item {
     @JoinColumn(name="group_id")
     private Group group;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "items2measures", joinColumns = { @JoinColumn(name = "item_id") }, inverseJoinColumns = { @JoinColumn(name = "measure_id") })
     private Set<Measure> measures = new HashSet<Measure>(0);
 
@@ -34,7 +34,12 @@ public class Item {
         this.group = group;
         this.measures = measures;
     }
+    public Item(String name, Group group, Set<Measure> measures) {
 
+        this.name = name;
+        this.group = group;
+        this.measures = measures;
+    }
     public Long getId() {
         return id;
     }

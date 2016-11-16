@@ -1,6 +1,8 @@
 package com.items.service;
 
+import com.groups.domain.Group;
 import com.items.domain.Item;
+import com.measures.domain.Measure;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ public class ItemServiceImpl implements ItemService{
 
     public Item save(Item i) {
         Session session = this.sessionFactory.getCurrentSession();
+        /*for(int y=0;y<=10000; y++) { //Test 10 000 records
+            Item i2 = new Item(i.getName(), i.getGroup(), i.getMeasures());
+            session.saveOrUpdate(i2);
+        }*/
         session.saveOrUpdate(i);
         return i;
     }

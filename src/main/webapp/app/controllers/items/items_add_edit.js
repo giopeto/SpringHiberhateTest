@@ -8,6 +8,7 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
     vm.items = new ItemFactory();
     vm.isLoading = false;
     vm.items.measures = [];
+    vm.items.group = {};
     /*vm.items = {
      name: '',
      };*/
@@ -29,6 +30,7 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
         vm.items.group = JSON.parse(vm.items.group);
 
         var start = performance.now();
+        var i = 0;
         //for(var i = 0; i <10000; i++) {
             ItemFactory.save(vm.items, function (data) {
                /* $log.log("Success: ", data);*/
@@ -83,8 +85,6 @@ ngApp.lazy.controller('itemsAddEditCtrl', function($scope, $log, ItemFactory, Gr
     };
 
     vm.addMeasure = function (args) {
-        $log.log (args);
-        //vm.items.measures = JSON.parse(vm.items.measures);
         vm.items.measures.push(JSON.parse(args));
     };
 
