@@ -1,8 +1,6 @@
 package com.items.service;
 
-import com.groups.domain.Group;
 import com.items.domain.Item;
-import com.measures.domain.Measure;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
