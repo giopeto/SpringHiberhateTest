@@ -23,7 +23,7 @@
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	<property name="url" value="jdbc:mysql://localhost:3306/spring_hiberhate_maven" />
 	<property name="username" value="root" />
-	<property name="password" value="rty883" />
+	<property name="password" value="pass" />
 	</bean>
 
 	<bean id="mySessionFactory"
